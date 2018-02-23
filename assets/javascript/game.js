@@ -13,27 +13,85 @@ var shoe = shoes[Math.floor(Math.random() * shoes.length)];
 var wins = 0;
 var remain = 10;
 var guesses = [];
+var s;
+
 
 //Blank "_" array for chosen word
 var answerArray = [];
 for (var i = 0; i < shoe.length; i++) {
     answerArray[i] = " _ ";
 }
-//settng letters of chosen word to the chosen word lenght
-var remainingLetters = shoe.length;
 
-function drawGuesses() {
-    guesses.sort();
-    $("#lettersGuessed").html(guesses.join(", "));
+//Game Function
+function startUp() {
+    $("#guessesRemaining").html(remain);
+    $("#wins").html(wins);
+    $("#currentWord").html(answerArray);
+
+    //filling answer array with underscores when game first starts
+    for (var i = 0; i < shoe.length; i++) {
+        answerArray[i] = " _ ";
+    }
+
+    //turn the underscore array into a string & puts it into the current word div   
+    s = answerArray.join(" ");
+    $("#currentWord").html(answerArray);
+
+    //make variable userGuess = document.onkeyup 
+    document.onkeypress = function () {
+        var userGuess = event.key;
+        console.log(userGuess)
+
+        //cycle through shoe, if letter in shoe = letter in answer array it replaces it
+        for (var i = 0; i < shoe.length; i++) {
+            if (shoe[i] === userGuess) {
+                answerArray[i] = userGuess;
+            }
+
+            //updates html current word with user guess
+            $("#currentWord").html(answerArray);
+
+        }
+    }
 }
+//     }
+// }
+// function drawGuesses() {
+//     guesses.sort();
+//     $("#lettersGuessed").html(guesses.join(", "));
+// }
+
+
+
+
+    //use either for loop, .each(), .map()
+//if userGuess == element in shoe array, change innerHTML or text of the #currentWord HTML element
+    //also going to update Guesses element
+//else if subtract life and update Guesses element
+
+//TO END THE GAME
+    //if answerArray == shoe
+        // alert "you win"
+        //reset the game
+            //have function called reset
+
+//while loop
+    //either: while guesses > 0
+    //or: while answerArray != shoe
+
+
+
+
+
+
+
+
 
 //When the game loads up
-    function startUp() {
-        $("#guessesRemaining").html(remain);
-        $("#wins").html(wins);
-        $("#currentWord").html(answerArray);
+
 
         //register users key press input
+
         // function myFunction(event) {
         // var userGuess = event.key;
 
@@ -42,16 +100,16 @@ function drawGuesses() {
         //     //if not as to input another character
 
         //     //if it is check it agaist "shoe"
-        //     if (shoe[i] === userGuess) {r
-    
+        //     if (shoe[i] === userGuess) {
+
         //         answerArray[i] = userGuess;
         //     }
 
         //     //if its not in "shoe" put it in lettersguessed array
 
-            
-                
-            }
+
+
+
 
 
 

@@ -22,6 +22,10 @@ for (var i = 0; i < shoe.length; i++) {
     answerArray[i] = " _ ";
 }
 
+//Reset game
+
+
+
 //Game Function
 function startUp() {
     $("#guessesRemaining").html(remain);
@@ -40,7 +44,6 @@ function startUp() {
     //make variable userGuess = document.onkeyup 
     document.onkeypress = function () {
         var userGuess = event.key;
-        console.log(userGuess)
 
         //cycle through shoe, if letter in shoe = letter in answer array it replaces it
         for (var i = 0; i < shoe.length; i++) {
@@ -52,6 +55,41 @@ function startUp() {
             $("#currentWord").html(answerArray);
 
         }
+        //if user guess is not in shoe 
+        if (shoe.indexOf(userGuess) === -1) {
+
+            //push users guess into guesses array
+            guesses.push(userGuess);
+
+            //subtract a point from lives (remain)
+            remain--;
+
+            //update guesses html with user guess 
+            $("#lettersGuessed").html(guesses);
+
+            //update reamining lives
+            $("#guessesRemaining").html(remain);
+        }
+
+        //Winner
+        var answerArrayString = answerArray.toString();
+        if (answerArrayString.indexOf("_") === -1) {
+
+            //update wins
+            wins++;
+
+            //update wins in html
+            $("#wins").html(wins);
+
+            //reset game
+        }
+        //Loser
+        if (remain ===0) {
+
+            //reset game
+
+        }    
+        
     }
 }
 //     }
